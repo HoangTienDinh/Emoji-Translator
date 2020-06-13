@@ -8,8 +8,12 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: '50ch',
     },
-  },
+  }
 }));
+
+const style = {
+  wordWrap: 'break-word'
+}
 
 export default function Emoji(props) {
   const { emojiTranslation } = props;
@@ -18,6 +22,7 @@ export default function Emoji(props) {
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <TextField 
+      fullWidth
         id="standard-basic" 
         label="Emoji" 
         value={emojiTranslation}

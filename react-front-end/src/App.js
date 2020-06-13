@@ -13,18 +13,18 @@ class App extends Component {
       emojiTranslation: ''
     };
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit=this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.translate = this.translate.bind(this)
   }
 
-  handleChange(evt) {
-    console.log("CHANGED INPUT", evt.target.value);
-    this.setState({ message: evt.target.value });
-                   
+  handleChange = async function(evt) {
+    await this.setState({message: evt.target.value})
+    
     // run recognize & translate fn
     const translation = this.translate(this.state.message)
     // set emojiTranslation on state
     this.setState({ emojiTranslation: translation })
+
   }
     
   handleSubmit(){
@@ -34,39 +34,25 @@ class App extends Component {
 
   // value = {props.emojiTranslation ? props.emojiTranslation: props.message}
   translate(message) {
-    console.log('MESSAGE', message)
     const wordsArray = message.split(' ');
     let translatedArray = []; 
 
     wordsArray.forEach(word => {
-      // let emojiChar;
-      // console.log('line 45', word)
-
       if (allEmojis[word]) {
         let emojiChar = allEmojis[word].char;
         translatedArray.push(emojiChar);
       } else {
         translatedArray.push(word);
       }
-      
-        // for (let emojiWord in allEmojis) {
-        //   if (word === emojiWord) {
-        //     let emojiChar = allEmojis[emojiWord].char;
-
-        //     translatedArray.push(emojiChar);
-        //   } else {
-        //     translatedArray.push(word);
-        //   }
-          // console.log('HERE', translatedArray)
-        // }
     })
-
     return translatedArray.join(' ');
   }
   
   render() {
     return (
       <div className="App">
+        <h1>Emoji Translator</h1>
+        <h2>Translate your sentences below and watch the emojis fill in the words!</h2>
         <Input handleChange={this.handleChange} value={this.state.message} />
         <Emoji
           emojiTranslation={this.state.emojiTranslation}

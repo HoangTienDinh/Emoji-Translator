@@ -6,6 +6,7 @@
     "@material-ui/core": "^4.10.1",
     "axios": "^0.18.1",
     "emojilib": "^2.4.0",
+    "node-emoji": "^1.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8"
